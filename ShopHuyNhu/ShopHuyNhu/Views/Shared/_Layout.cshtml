@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Trang chủ</title>
+	<link href="~/css/bootstrap.min.css" rel="stylesheet">
+	<link href="~/css/font-awesome.min.css" rel="stylesheet">
+	<link href="~/css/prettyPhoto.css" rel="stylesheet">
+	<link href="~/css/price-range.css" rel="stylesheet">
+	<link href="~/css/animate.css" rel="stylesheet">
+	<link href="~/css/main.css" rel="stylesheet">
+	<link href="~/css/responsive.css" rel="stylesheet">
+
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="shortcut icon" href="images/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+
+</head><!--/head-->
+
+<body>
+	<header id="header">
+		<!--header-->
+	
+		<div class="header-middle">
+			<!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a asp-action="Index" asp-controller="Home"><img src="images/home/logo2.png" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a asp-action="Login" asp-controller="TaiKhoan"><i class="fa fa-user"></i> Tài khoản</a></li>
+								
+								
+								@if(User.Identity?.IsAuthenticated ?? false) //kt đăng nhập
+								{
+									<li><a asp-action="Index" asp-controller="GioHang"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					
+									<li><a asp-action="LogOut" asp-controller="TaiKhoan"><i class="fa fa-lock"></i>Xin chào @User.Identity.Name , Đăng xuất</a></li>
+								}
+								else
+								{
+									<li><a asp-action="Login" asp-controller="TaiKhoan"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+								}
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+		<div class="header-bottom">
+			<!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+								
+								<li><a asp-action="Index" asp-controller="Contax">Thông tin liên hệ</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	<section id="slider">
+		<!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-11">
+									<img src="https://cdn.tgdd.vn/hoi-dap/1355217/banner-tgdd-800x300.jpg" width="100%"/>
+								</div>
+								
+							</div>
+							<div class="item">
+								<img src="https://cdn.tgdd.vn/hoi-dap/1355217/banner-tgdd-800x300.jpg" width="100%" />
+								
+							</div>
+
+							<div class="item">
+								<img src="https://cdn.tgdd.vn/hoi-dap/1355217/banner-tgdd-800x300.jpg" width="100%" />
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+	<section id="products">
+		<div class="container">
+			<div class="row">
+				@Html.Partial("_NotificationPartial")
+
+				@RenderBody()
+
+				<div class="col-sm-12 text-center">
+					<h2>Cam kết dịch vụ</h2>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+					  <div class="product-image">
+							<img src="https://th.bing.com/th/id/OIP.-Mc5g6ov-4bzzOH9uqXyfgHaGm?pid=ImgDet&w=184&h=163&c=7&dpr=1.3" width="70%" height="50%" />
+						</div>
+					  <h3>Miễn phí vẫn chuyển</h3>
+					  <p>Vận chuyển nhanh trong vòng 3 ngày kể từ ngày đặt hàng.</p>
+					</div>
+					<div class="col-sm-4">
+					  <div class="product-image">
+							<img src="https://th.bing.com/th/id/OIP.JaT6WQtHJgM9m9vpxZmgNwHaDf?w=325&h=164&c=7&r=0&o=5&dpr=1.3&pid=1.7" />
+						</div>
+					  <h3>Thanh toán nhanh</h3>
+					  <p>Đảm bảo thanh toán chính xác, an toàn cho khách hàng.</p>
+					</div>
+					<div class="col-sm-4">
+					  <div class="product-image">
+						<img src="https://th.bing.com/th/id/OIP.nNNAwWnICn5pxbRfdkVCcwHaEo?w=282&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" />
+					  </div>
+					  <h3>Bảo mật thông tin</h3>
+					  <p>Thông tin khách hàng được bảo mật 100%</p>
+					</div>
+				  </div>
+			</div>
+			<iframe width="100%" height="350" src="https://www.youtube.com/embed/7dYTw-jAYkY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+
+		</div>
+	</section>
+
+
+	<footer id="footer">
+		<!--Footer-->
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Hỗ trợ</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Online Help</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Chi nhánh</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">T-Shirt</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Bảo hành</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Phản hồi</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Company Information</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3 col-sm-offset-1">
+						<div class="single-widget">
+							<h2>Phản hồi</h2>
+							<form action="#" class="searchform">
+								<input type="text" placeholder="Your email address" />
+								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+								<p>Hãy phản hồi nếu dịch vụ không tốt</p>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer><!--/Footer-->
+
+
+
+	<script src="~/js/jquery.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/jquery.scrollUp.min.js"></script>
+	<script src="~/js/price-range.js"></script>
+	<script src="~/js/jquery.prettyPhoto.js"></script>
+	<script src="~/js/main.js"></script>
+
+	@await RenderSectionAsync("Scripts",required:false)
+</body>
+</html>

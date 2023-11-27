@@ -1,0 +1,73 @@
+﻿
+<div class="row">
+	<div class="col-sm-3">
+		@Html.Partial("_SidebarPartal") <!-- gọi lại slide bar-->
+	</div>
+
+	<div class="col-sm-9 padding-right">
+		<div class="product-details">
+			<!--product-details-->
+			<div class="col-sm-5">
+				<div class="view-product">
+					<img src="~/media/sanphams/@Model.Hinh" alt="" width="200px" height="150px" />
+				</div>
+				<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item">
+							<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
+							<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
+							<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-7">
+				<div class="product-information">
+					<!--/product-information-->
+					<!-- <img src="~/images/@Model.Hinh"  class="newarrival" alt="@Model.Ten" /> -->
+					<h2>
+						@Model.Ten
+					</h2>
+					<img src="~/media/sanphams/@Model.Hinh" alt="" />
+					<span>
+						<span>@Model.Gia.ToString("#,##0đ")</span>
+						<label>Số lượng: 1</label>
+						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Home" asp-route-id="@Model.Id">
+							<i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
+						</a>
+					</span>
+					<p><b>Trạng thái:</b> Còn hàng</p>
+					<p><b>Brand:</b> @Model.Brand.Ten</p>
+					<p><b>DanhMuc:</b> @Model.DanhMuc.Ten</p>
+					<a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+				</div><!--/product-information-->
+			</div>
+		</div><!--/product-details-->
+
+		<div class="category-tab shop-details-tab">
+			<!--category-tab-->
+			<div class="col-sm-12">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
+					
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade active in" id="details">
+					@Model.MoTa
+				</div>
+
+				
+
+			</div>
+		</div><!--/category-tab-->
+
+		
+
+	</div>
+</div>
+

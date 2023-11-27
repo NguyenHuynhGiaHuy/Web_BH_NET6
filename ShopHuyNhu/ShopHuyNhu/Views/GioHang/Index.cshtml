@@ -1,0 +1,74 @@
+﻿@using ShopHuyNhu.Models.ViewModels
+@model GioHangItemViewModel
+
+<section id="cart_items">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+				<li><a asp-action="Index" asp-controller="Home">Home</a></li>
+				<li class="active">Giỏ hàng</li>
+			</ol>
+		</div>
+		<div class="table-responsive cart_info">
+			<table class="table table-condensed">
+				<thead>
+					<tr class="cart_menu">
+						<td class="image">Hình sản phẩm</td>
+						<td class="description">Mô tả</td>
+						<td class="price">Giá</td>
+						<td class="quantity">Số lượng</td>
+						<td class="total">Tổng</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					@if (Model.GioHangItems.Count > 0)
+					{
+						foreach (var item in Model.GioHangItems)
+						{
+							<tr>
+								<td class="cart_product">
+									<a href=""><img src="~/media/sanphams/@item.Hinh" style="width: 70%; height: auto;" alt=""></a>
+								</td>
+								<td class="cart_description">
+									<h4><a href="">@item.SanPhamName</a></h4>
+									
+								</td>
+								<td class="cart_price">
+									<p>@item.Gia.ToString("#,##0đ")</p>
+								</td>
+								<td class="cart_quantity">
+
+									<a class="btn btn-success btn-sm" asp-action="Tang" asp-controller="GioHang" asp-route-id="@item.SanPhamId"> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="@item.SoLuong" autocomplete="off" size="2">
+										<a class="btn btn-success btn-sm" asp-action="Giam" asp-controller="GioHang" asp-route-id="@item.SanPhamId"> - </a> 
+										<a class="btn btn-danger btn-sm" asp-action="Xoa" asp-controller="GioHang" asp-route-id="@item.SanPhamId"> Xóa </a> 
+								
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">@Model.GioHangItems.Where(x => x.SanPhamId == @item.SanPhamId).Sum(x =>x.SoLuong * x.Gia).ToString()</p>
+								</td>
+								
+							</tr>
+						}
+						<tr rowspan="6">
+							<td colspan="6">Tổng tiền: @Model.TongTien.ToString()</td>
+							<td><a class="btn btn-danger btn-sm" asp-action="Clear" asp-controller="GioHang" > Xóa toàn bộ giỏ hàng </a> </td>
+							@if (User.Identity?.IsAuthenticated ?? false) // kt đăng nhập thì mới checkout
+							{
+								<td><a class="btn btn-danger btn-sm" asp-action="Checkout" asp-controller="Checkout"> Thanh toán </a> </td>
+							}
+							
+						</tr>
+					}
+					else
+					{
+						<tr>
+							<td colspan="5"><h4>Giỏ hàng trống</h4></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section> <!--/#cart_items-->
